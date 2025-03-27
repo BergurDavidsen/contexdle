@@ -7,7 +7,7 @@ import (
 	graph "github.com/BergurDavidsen/contexdle/Graph"
 )
 
-var cacheFile = "medium_similarity_cache.gob"
+var cacheFile = "cache/default_similarity_cache.gob"
 
 func SaveCache(cache map[string][]*graph.EdgeScore) error {
 	file, err := os.Create(cacheFile)

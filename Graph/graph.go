@@ -107,13 +107,20 @@ func (graph *Graph) Populate(similarityScores map[string][]*EdgeScore) {
 }
 
 // Dijkstra's algorithm
-func (graph *Graph) Dijkstra(startWord, endWord string) ([]string, float32) {
+func (graph *Graph) Dijkstra(startWord, endWord string) ([]string, float32, error) {
 	// Initialize data structures
 	distances := make(map[string]float32)
 	previous := make(map[string]string)
 	pq := make(PriorityQueue, 0)
 	heap.Init(&pq)
 
+	// Check if both values exist in graph
+	if _, ok := graph.Vertices[startWord]; !ok {
+		return nil, 0, fmt.Errorf("'%s' does not exist in the graph", startWord)
+	}
+	if _, ok := graph.Vertices[endWord]; !ok {
+		return nil, 0, fmt.Errorf("'%s' does not exist in the graph", endWord)
+	}
 	// Set all distances to infinity
 	for vertex := range graph.Vertices {
 		distances[vertex] = float32(math.Inf(1))
@@ -163,10 +170,10 @@ func (graph *Graph) Dijkstra(startWord, endWord string) ([]string, float32) {
 
 	// If there's no path to the endWord, return an empty path
 	if len(path) == 1 && path[0] != endWord {
-		return nil, float32(math.Inf(1))
+		return nil, float32(math.Inf(1)), nil
 	}
 
-	return path, distances[endWord]
+	return path, distances[endWord], nil
 }
 
 func (graph *Graph) Print() {

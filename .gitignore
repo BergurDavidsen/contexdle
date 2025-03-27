@@ -2,8 +2,7 @@
 # https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
 #
 .DS_Store
-data
-*.gob
+*similarity_cache.gob
 # Binaries for programs and plugins
 *.exe
 *.exe~

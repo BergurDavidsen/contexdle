@@ -73,7 +73,8 @@ func ComputeSimilarityScoresParallel(words []string) map[string][]*graph.EdgeSco
 }
 
 func FilterWord(w string) bool {
-	if len(w) < 2 || len(w) > 7 {
+	// filters the length. The longer the more words will be added and more memory needed
+	if len(w) < 3 || len(w) > 4 {
 		return false
 	}
 
