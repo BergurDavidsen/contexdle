@@ -3,7 +3,7 @@
 #
 .DS_Store
 data
-similarity_cache.gob
+*.gob
 # Binaries for programs and plugins
 *.exe
 *.exe~
